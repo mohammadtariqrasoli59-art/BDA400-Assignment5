@@ -1,0 +1,32 @@
+# BDA400 Assignment 5 - Standard Deviation (stdev)
+# Name: Rasoli Mohammad
+#
+# The assignment uses population standard deviation:
+# sqrt(sum((x - mean(x))^2) / n)
+
+stdev <- function(data) {
+  if (length(data) == 0) {
+    stop("Data must contain at least one value")
+  }
+
+  mean_value <- sum(data) / length(data)
+
+  diff_values <- numeric(length(data))
+  for (i in 1:length(data)) {
+    diff_values[i] <- data[i] - mean_value
+  }
+
+  squared_diff <- numeric(length(diff_values))
+  for (i in 1:length(diff_values)) {
+    squared_diff[i] <- diff_values[i] * diff_values[i]
+  }
+
+  variance <- sum(squared_diff) / length(squared_diff)
+  standard_deviation <- sqrt(variance)
+
+  return(standard_deviation)
+}
+
+# Example:
+# data <- c(10, 12, 15, 20, 18, 22, 25, 24, 21)
+# print(stdev(data))
